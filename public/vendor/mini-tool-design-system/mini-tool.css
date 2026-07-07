@@ -201,3 +201,42 @@ pre {
 .mt-summary strong {
   color: var(--mt-color-primary-hover);
 }
+
+/*
+ * View tabs: a segmented switcher for top-level views inside one tool
+ * (e.g. Overview / Detail / History). Distinct from workflow ribbons,
+ * which sequence actions; view tabs only change what is shown.
+ * Mark the active tab with .active or aria-selected="true".
+ */
+.mt-tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: var(--mt-border-width) solid var(--mt-color-line);
+  border-radius: var(--mt-radius-control);
+  background: var(--mt-color-surface-alt);
+}
+
+.mt-tab {
+  border: var(--mt-border-width) solid transparent;
+  border-radius: var(--mt-radius-compact);
+  padding: 4px 12px;
+  background: transparent;
+  color: var(--mt-color-muted);
+  font-size: 13px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mt-tab:hover {
+  color: var(--mt-color-primary);
+}
+
+.mt-tab.active,
+.mt-tab[aria-selected="true"] {
+  border-color: var(--mt-color-line);
+  background: var(--mt-color-surface);
+  color: var(--mt-color-primary);
+  box-shadow: var(--mt-shadow-chrome);
+}
