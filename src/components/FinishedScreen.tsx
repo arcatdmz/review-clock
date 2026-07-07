@@ -14,7 +14,7 @@ export function FinishedScreen({ config, run, onNewSession }: FinishedScreenProp
   const early = config.targetEnd - Date.now();
 
   return (
-    <section className="card finished">
+    <section className="card mt-card finished">
       <div className="finished-mark">✓</div>
       <h2>おつかれさまでした！</h2>
       <p>
@@ -31,7 +31,7 @@ export function FinishedScreen({ config, run, onNewSession }: FinishedScreenProp
           </>
         )}
       </p>
-      <button className="btn primary big" onClick={onNewSession}>
+      <button className="btn mt-button mt-button-primary primary big" onClick={onNewSession}>
         新しいセッションを始める
       </button>
     </section>

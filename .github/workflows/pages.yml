@@ -17,10 +17,21 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      MINI_TOOL_DESIGN_SYSTEM_REPOSITORY: ${{ vars.MINI_TOOL_DESIGN_SYSTEM_REPOSITORY }}
+      MINI_TOOL_DESIGN_SYSTEM_PAT: ${{ secrets.MINI_TOOL_DESIGN_SYSTEM_PAT }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Checkout external design CSS source
+        if: ${{ env.MINI_TOOL_DESIGN_SYSTEM_REPOSITORY != '' && env.MINI_TOOL_DESIGN_SYSTEM_PAT != '' }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.MINI_TOOL_DESIGN_SYSTEM_REPOSITORY }}
+          token: ${{ env.MINI_TOOL_DESIGN_SYSTEM_PAT }}
+          path: external-design-system
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,7 +42,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build external design CSS source
+        if: ${{ env.MINI_TOOL_DESIGN_SYSTEM_REPOSITORY != '' && env.MINI_TOOL_DESIGN_SYSTEM_PAT != '' }}
+        run: npm --prefix external-design-system run build
+
       - name: Build
+        env:
+          MINI_TOOL_DESIGN_SYSTEM_DIST: ${{ github.workspace }}/external-design-system/dist
         run: npm run build
 
       - name: Upload artifact

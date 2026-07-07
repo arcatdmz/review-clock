@@ -13,6 +13,17 @@ npm run preview  # ビルド結果の確認
 
 要件: Node.js v24 以降。
 
+ローカルのミニツールとして使う場合は、ビルド後に `review-clock` コマンドで起動します。
+
+```sh
+npm install
+npm run build
+npm install -g .
+review-clock --port 9882
+```
+
+`MINI_TOOL_DESIGN_SYSTEM_DIST` が設定されている場合、`npm run dev` / `npm run build` はそのディレクトリの `mini-tool.css` を取り込んでから起動・ビルドします。GitHub Actions では `MINI_TOOL_DESIGN_SYSTEM_REPOSITORY` と `MINI_TOOL_DESIGN_SYSTEM_PAT` が設定されている場合のみ外部CSSを取り込み、未設定時は同梱CSSでビルドします。
+
 ## 機能
 
 - **双方向のスケジュール計算** — 「1 レビューあたりの時間」を決めると終了日時が自動計算され、逆に「目標終了日時」を入れると 1 レビューあたりの持ち時間が逆算されます。最後に編集した側が基準（フォームでティール色の枠）になります。

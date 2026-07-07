@@ -95,10 +95,10 @@ export default function App() {
       <header className="topbar">
         <h1>
           <svg viewBox="0 0 32 32" aria-hidden="true">
-            <circle cx="16" cy="16" r="14" fill="var(--accent)" />
+            <circle cx="16" cy="16" r="14" fill="var(--mt-color-primary)" />
             <path
               d="M16 8v8l6 4"
-              stroke="#fff"
+              stroke="var(--mt-color-surface)"
               strokeWidth="2.5"
               strokeLinecap="round"
               fill="none"

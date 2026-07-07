@@ -119,34 +119,34 @@ export function RunScreen({
 
       <div className="controls">
         {run.phase === "work" ? (
-          <button className="btn primary big" onClick={onComplete}>
+          <button className="btn mt-button mt-button-primary primary big" onClick={onComplete}>
             ✓ このレビューを完了して次へ
           </button>
         ) : (
-          <button className="btn break big" onClick={onSkipBreak}>
+          <button className="btn mt-button mt-button-warning break big" onClick={onSkipBreak}>
             休憩を切り上げて次へ
           </button>
         )}
         <div className="controls-row">
           {paused ? (
-            <button className="btn" onClick={onResume}>
+            <button className="btn mt-button" onClick={onResume}>
               ▶ 再開
             </button>
           ) : (
-            <button className="btn" onClick={onPause}>
+            <button className="btn mt-button" onClick={onPause}>
               ⏸ 一時停止
             </button>
           )}
           {run.phase === "work" && (
             <button
-              className="btn"
+              className="btn mt-button"
               title="目標終了日時はそのままに、残りのレビュー数で持ち時間を割り直します"
               onClick={onRedistribute}
             >
               残り時間を再配分
             </button>
           )}
-          <button className="btn subtle" onClick={onReset}>
+          <button className="btn mt-button mt-button-subtle subtle" onClick={onReset}>
             リセット
           </button>
         </div>

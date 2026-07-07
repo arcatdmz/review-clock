@@ -4,12 +4,16 @@
   "version": "1.0.0",
   "type": "module",
   "description": "レビュー用のポモドーロ風タイマー",
+  "bin": {
+    "review-clock": "./bin/review-clock.mjs"
+  },
   "engines": {
     "node": ">=24"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "sync-design-system": "node scripts/sync-design-system.mjs",
+    "dev": "node scripts/sync-design-system.mjs && vite",
+    "build": "node scripts/sync-design-system.mjs && tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {

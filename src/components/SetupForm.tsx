@@ -98,13 +98,14 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
   };
 
   return (
-    <section className="card setup">
+    <section className="card mt-card setup">
       <h2>セッション設定</h2>
       <div className="fields">
         <label className="field">
           <span className="field-label">レビュー数</span>
           <span className="field-input">
             <input
+              className="mt-input"
               type="number"
               min={1}
               step={1}
@@ -123,6 +124,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
           </span>
           <span className="field-input">
             <input
+              className="mt-input"
               type="number"
               min={0}
               step={0.5}
@@ -147,6 +149,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
           </span>
           <span className="field-input">
             <input
+              className="mt-input"
               type="datetime-local"
               value={displayedDeadline}
               onChange={(e) => {
@@ -161,6 +164,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
           <span className="field-label">休憩の間隔</span>
           <span className="field-input">
             <input
+              className="mt-input"
               type="number"
               min={0}
               step={1}
@@ -177,6 +181,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
           <span className="field-label">休憩の長さ</span>
           <span className="field-input">
             <input
+              className="mt-input"
               type="number"
               min={0}
               step={1}
@@ -191,7 +196,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
       </div>
 
       {valid && targetEnd !== null ? (
-        <p className="summary">
+        <p className="summary mt-summary">
           レビュー {totalWorks} 件 × {fmtDur(perWorkSec)}
           {breaks > 0 && ` ＋ 休憩 ${breaks} 回 × ${fmtDur(breakSec)}`} ＝ 合計{" "}
           <strong>{fmtDur(totalSec)}</strong>
@@ -203,7 +208,7 @@ export function SetupForm({ initial, onStart }: SetupFormProps) {
         <p className="summary error">{errors[0]}</p>
       )}
 
-      <button className="btn primary big" disabled={!valid} onClick={start}>
+      <button className="btn mt-button mt-button-primary primary big" disabled={!valid} onClick={start}>
         レビュー開始
       </button>
     </section>
