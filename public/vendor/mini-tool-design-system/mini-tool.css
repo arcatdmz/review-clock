@@ -203,6 +203,40 @@ pre {
 }
 
 /*
+ * Accessible custom tooltip. `tooltip.js` creates this fixed overlay for any
+ * element with `data-mt-tooltip`, so it is not clipped by scroll containers.
+ */
+.mt-tooltip {
+  position: fixed;
+  z-index: 10000;
+  max-width: min(280px, calc(100vw - 16px));
+  padding: 7px 10px;
+  border: var(--mt-border-width) solid var(--mt-color-line-strong);
+  border-radius: var(--mt-radius-control);
+  background: var(--mt-color-text);
+  box-shadow: var(--mt-shadow-modal);
+  color: var(--mt-color-surface);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+
+.mt-tooltip[data-visible="true"] {
+  animation: mt-tooltip-in 100ms ease-out;
+}
+
+@keyframes mt-tooltip-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mt-tooltip[data-visible="true"] { animation: none; }
+}
+
+/*
  * View tabs: a segmented switcher for top-level views inside one tool
  * (e.g. Overview / Detail / History). Distinct from workflow ribbons,
  * which sequence actions; view tabs only change what is shown.
@@ -239,4 +273,107 @@ pre {
   background: var(--mt-color-surface);
   color: var(--mt-color-primary);
   box-shadow: var(--mt-shadow-chrome);
+}
+
+/* Shared month calendar. Event content and workflow behavior remain tool-owned. */
+.mt-calendar {
+  min-width: 0;
+  background: var(--mt-color-surface);
+}
+
+.mt-calendar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0;
+  padding-block: 12px;
+}
+
+.mt-calendar-title {
+  min-width: 10rem;
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.mt-calendar-nav {
+  width: 34px;
+  min-height: 30px;
+  padding: 3px;
+  font-size: 18px;
+}
+
+.mt-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: var(--mt-border-width) solid var(--mt-color-line);
+  border-left: var(--mt-border-width) solid var(--mt-color-line);
+}
+
+.mt-calendar-weekday {
+  min-height: 28px;
+  padding: 5px;
+  border-right: var(--mt-border-width) solid var(--mt-color-line);
+  border-bottom: var(--mt-border-width) solid var(--mt-color-line);
+  background: var(--mt-color-chrome);
+  color: var(--mt-color-muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.mt-calendar-day {
+  min-width: 0;
+  min-height: 104px;
+  padding: 6px;
+  border-right: var(--mt-border-width) solid var(--mt-color-line);
+  border-bottom: var(--mt-border-width) solid var(--mt-color-line);
+  background: var(--mt-color-surface);
+}
+
+.mt-calendar-day.outside {
+  background: var(--mt-color-surface-alt);
+  color: var(--mt-color-muted);
+}
+
+.mt-calendar-day-number {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.mt-calendar-events {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  margin-top: 5px;
+}
+
+.mt-calendar-event {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 24px;
+  overflow: hidden;
+  border: var(--mt-border-width) solid var(--mt-color-primary-soft-border);
+  border-radius: var(--mt-radius-compact);
+  padding: 3px 5px;
+  background: var(--mt-color-primary-wash);
+  color: var(--mt-color-text);
+  font-size: 11px;
+  line-height: 1.25;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mt-calendar-event:hover {
+  border-color: var(--mt-color-primary);
+  background: var(--mt-color-primary-soft);
+}
+
+.mt-calendar-more {
+  color: var(--mt-color-muted);
+  font-size: 10px;
+  text-align: right;
 }
