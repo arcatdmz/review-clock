@@ -7,6 +7,10 @@
   "bin": {
     "review-clock": "./bin/review-clock.mjs"
   },
+  "files": [
+    "bin/",
+    "dist/"
+  ],
   "engines": {
     "node": ">=24"
   },
@@ -14,7 +18,8 @@
     "sync-design-system": "node scripts/sync-design-system.mjs",
     "dev": "node scripts/sync-design-system.mjs && vite",
     "build": "node scripts/sync-design-system.mjs && tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "react": "^19.1.0",
