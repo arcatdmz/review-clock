@@ -130,14 +130,18 @@ pre {
   font-weight: 700;
 }
 
-.mt-input {
-  width: 100%;
-  min-width: 0;
+.mt-input,
+.mt-button {
   border: var(--mt-border-width) solid var(--mt-color-line);
   border-radius: var(--mt-radius-control);
   background: var(--mt-color-surface);
   color: var(--mt-color-text);
   font: inherit;
+}
+
+.mt-input {
+  width: 100%;
+  min-width: 0;
 }
 
 .mt-input:focus {
@@ -147,11 +151,6 @@ pre {
 }
 
 .mt-button {
-  border: var(--mt-border-width) solid var(--mt-color-line);
-  border-radius: var(--mt-radius-control);
-  background: var(--mt-color-surface);
-  color: var(--mt-color-text);
-  font: inherit;
   font-weight: 700;
   cursor: pointer;
   transition:
@@ -161,12 +160,19 @@ pre {
   touch-action: manipulation;
 }
 
-.mt-button:hover {
+.mt-button:hover:not(:disabled) {
   border-color: var(--mt-color-line-strong);
   background: var(--mt-color-surface-alt);
 }
 
-.mt-button:disabled {
+.mt-button:focus-visible,
+.mt-tab:focus-visible {
+  outline: 2px solid var(--mt-color-primary);
+  outline-offset: 2px;
+}
+
+.mt-button:disabled,
+.mt-tab:disabled {
   cursor: not-allowed;
   opacity: 0.45;
 }
@@ -177,7 +183,7 @@ pre {
   color: var(--mt-color-surface);
 }
 
-.mt-button-primary:hover {
+.mt-button-primary:hover:not(:disabled) {
   border-color: var(--mt-color-primary-hover);
   background: var(--mt-color-primary-hover);
 }
@@ -263,7 +269,7 @@ pre {
   cursor: pointer;
 }
 
-.mt-tab:hover {
+.mt-tab:hover:not(:disabled) {
   color: var(--mt-color-primary);
 }
 
